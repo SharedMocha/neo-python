@@ -62,12 +62,13 @@ def custom_background_stateinfo():
     thread and handle exiting this thread in another way (eg. with signals and events).
     """
     while True:
+        promptInterface = PromptInterface();
         height = Blockchain.Default().Height
         headers = Blockchain.Default().HeaderHeight
 
-        diff = height - self.start_height
+        diff = height - promptInterface.start_height
         now = datetime.datetime.utcnow()
-        difftime = now - self.start_dt
+        difftime = now - promptInterface.start_dt
 
         mins = difftime / datetime.timedelta(minutes=1)
         secs = mins * 60

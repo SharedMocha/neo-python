@@ -61,6 +61,7 @@ def custom_background_stateinfo():
     thread and handle exiting this thread in another way (eg. with signals and events).
     """
     while True:
+        cli = PromptInterface()
         height = Blockchain.Default().Height
         headers = Blockchain.Default().HeaderHeight
 
@@ -92,7 +93,6 @@ def custom_background_stateinfo():
 def main():
     # Use TestNet
     settings.setup_testnet()
-
     # Setup the blockchain
     blockchain = LevelDBBlockchain(settings.chain_leveldb_path)
     Blockchain.RegisterBlockchain(blockchain)

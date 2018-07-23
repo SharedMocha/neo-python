@@ -24,9 +24,11 @@ from prompt_toolkit.styles import Style
 # next line. This configures a logfile with max 10 MB and 3 rotations:
 # settings.set_logfile("/tmp/logfile.log", max_bytes=1e7, backup_count=3)
 
-token_style = None
-start_height = None
-start_dt = None
+
+class PromptInterface:
+    token_style = None
+    start_height = None
+    start_dt = None
 
 def __init__(self):
         #self.input_parser = InputParser()

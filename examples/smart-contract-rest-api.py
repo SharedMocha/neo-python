@@ -26,6 +26,7 @@ https://github.com/twisted/klein
 #Test
 import os
 import threading
+import datetime
 import json
 from time import sleep
 
@@ -93,6 +94,23 @@ def sc_notify(event):
 #
 # Custom code that runs in the background
 #
+class PromptInterface:
+    token_style = None
+    start_height = None
+    start_dt = None
+    def __init__(self):
+        #self.input_parser = InputParser()
+        self.start_height = Blockchain.Default().Height
+        self.start_dt = datetime.datetime.utcnow()
+        logger.info("TESTTT Block %s / %s", str(self.start_height), str(self.start_dt))
+
+        self.token_style = Style.from_dict({
+            "command": preferences.token_style['Command'],
+            "neo": preferences.token_style['Neo'],
+            "default": preferences.token_style['Default'],
+            "number": preferences.token_style['Number'],
+        })
+        
 def custom_background_code():
     """ Custom code run in a background thread. Prints the current block height.
 
@@ -118,6 +136,10 @@ def home(request):
 @authenticated
 @json_response
 def echo_msg(request, msg):
+    //promptInterface = PromptInterface();
+    height = Blockchain.Default().Height
+    headers = Blockchain.Default().HeaderHeight
+    msg = headers-height
     return {
         "echo": msg
     }

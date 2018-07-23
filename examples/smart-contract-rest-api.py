@@ -161,7 +161,8 @@ def main():
     d.start()
 
     # Hook up Klein API to Twisted reactor.
-    endpoint_description = "tcp:port=%s:interface=localhost" % API_PORT
+    # endpoint_description = "tcp:port=%s:interface=localhost" % API_PORT
+    endpoint_description = "tcp:port=%s" % API_PORT
 
     # If you want to make this service externally available (not only at localhost),
     # then remove the `interface=localhost` part:

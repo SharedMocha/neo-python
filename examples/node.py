@@ -29,8 +29,7 @@ class PromptInterface:
     token_style = None
     start_height = None
     start_dt = None
-
-def __init__(self):
+    def __init__(self):
         #self.input_parser = InputParser()
         self.start_height = Blockchain.Default().Height
         self.start_dt = datetime.datetime.utcnow()

@@ -136,7 +136,7 @@ def home(request):
 @authenticated
 @json_response
 def echo_msg(request, msg):
-    //promptInterface = PromptInterface();
+    #promptInterface = PromptInterface();
     height = Blockchain.Default().Height
     headers = Blockchain.Default().HeaderHeight
     msg = headers-height

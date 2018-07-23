@@ -65,7 +65,9 @@ def custom_background_stateinfo():
         promptInterface = PromptInterface();
         height = Blockchain.Default().Height
         headers = Blockchain.Default().HeaderHeight
-
+        logger.info("HEIGHT --> ", promptInterface.start_height)
+        diff = height - headers
+        logger.info("DIFFERENCE ONE --> ", diff)
         diff = height - promptInterface.start_height
         now = datetime.datetime.utcnow()
         difftime = now - promptInterface.start_dt
@@ -88,7 +90,7 @@ def custom_background_stateinfo():
         tokens = [("class:number", out)]
         #print_formatted_text(FormattedText(tokens), style=self.token_style)
         #logger.info("Downloaded Block %s / %s", str(Blockchain.Default().Height), str(Blockchain.Default().HeaderHeight))
-        logger.info("Downloaded Block %s / %s", out,tokens)
+        logger.info("Downloaded Block %s", out)
         sleep(15)
 
 def main():

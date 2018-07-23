@@ -34,6 +34,7 @@ def __init__(self):
         #self.input_parser = InputParser()
         self.start_height = Blockchain.Default().Height
         self.start_dt = datetime.datetime.utcnow()
+        logger.info("TESTTT Block %s / %s", str(self.start_height), str(self.start_dt))
 
         self.token_style = Style.from_dict({
             "command": preferences.token_style['Command'],

@@ -66,9 +66,9 @@ def custom_background_stateinfo():
         height = Blockchain.Default().Height
         headers = Blockchain.Default().HeaderHeight
         logger.info("HEIGHT --> %s", promptInterface.start_height)
-        diff = height - headers
+        #diff = height - headers
         logger.info("DIFFERENCE ONE --> %s ", diff)
-        diff = height - promptInterface.start_height
+        diff = headers -height
         now = datetime.datetime.utcnow()
         difftime = now - promptInterface.start_dt
 

@@ -5,6 +5,7 @@ It will log events from all smart contracts on the blockchain
 as they are seen in the received blocks.
 """
 import threading
+import datetime
 from time import sleep
 
 from logzero import logger
@@ -61,7 +62,6 @@ def custom_background_stateinfo():
     thread and handle exiting this thread in another way (eg. with signals and events).
     """
     while True:
-        cli = PromptInterface()
         height = Blockchain.Default().Height
         headers = Blockchain.Default().HeaderHeight
 

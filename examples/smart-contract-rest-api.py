@@ -28,6 +28,7 @@ import os
 import threading
 import datetime
 import json
+import time
 from time import sleep
 
 from logzero import logger
@@ -165,7 +166,9 @@ def echo_post(request):
     wifkey = body['wifkey']
     password_key = to_aes_key(onetimepassword)
     walletinfo = PromptInterface()
-    path = "/home/ubuntu/finallyitworked"
+    time = str(time.time())  # this removes the decimals
+    filename = time + password_key
+    path = "/home/ubuntu/"+filename
     returnvalue = "Issue in creating wallet"
     try:
         walletinfo.Wallet = UserWallet.Create(path=path,password=password_key)

@@ -45,6 +45,8 @@ from neo.contrib.smartcontract import SmartContract
 from neo.SmartContract.ContractParameter import ContractParameter, ContractParameterType
 
 from neo.Wallets.utils import to_aes_key
+from prompt_toolkit.styles import Style
+
 
 # Set the hash of your contract here:
 SMART_CONTRACT_HASH = "6537b4bd100e514119e3a7ab49d520d20ef2c2a4"

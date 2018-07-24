@@ -167,15 +167,15 @@ def echo_post(request):
     path = "/home/ubuntu/finallyitworked"
     returnvalue = "Issue in create"
     try:
-        self.Wallet = UserWallet.Create(path=path,password=password_key)
+        walletinfo.Wallet = UserWallet.Create(path=path,password=password_key)
         #contract = self.Wallet.GetDefaultContract()
-        key = self.Wallet.GetKey(contract.PublicKeyHash)
-        returnvalue = self.Wallet.ToJson()
-        print("Wallet %s" % json.dumps(self.Wallet.ToJson(), indent=4))
+        key = walletinfo.Wallet.GetKey(contract.PublicKeyHash)
+        returnvalue = walletinfo.Wallet.ToJson()
+        print("Wallet %s" % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
         print("Pubkey %s" % key.PublicKey.encode_point(True))
     except Exception as e:
         print("Exception creating wallet: %s" % e)
-        self.Wallet = None
+        walletinfo.Wallet = None
         return
                 
     # Echo it

@@ -44,6 +44,8 @@ from neo.Network.api.decorators import json_response, gen_authenticated_decorato
 from neo.contrib.smartcontract import SmartContract
 from neo.SmartContract.ContractParameter import ContractParameter, ContractParameterType
 
+from neo.Wallets.utils import to_aes_key
+
 # Set the hash of your contract here:
 SMART_CONTRACT_HASH = "6537b4bd100e514119e3a7ab49d520d20ef2c2a4"
 
@@ -98,6 +100,7 @@ class PromptInterface:
     token_style = None
     start_height = None
     start_dt = None
+    Wallet = None
     def __init__(self):
         #self.input_parser = InputParser()
         self.start_height = Blockchain.Default().Height
@@ -152,10 +155,27 @@ def echo_msg(request, msg):
 def echo_post(request):
     # Parse POST JSON body
     body = json.loads(request.content.read().decode("utf-8"))
-
+    onetimepassword  = body.onetimepassword
+    wifkey = body.wifkey
+    password_key = to_aes_key(onetimepassword)
+    walletinfo = PromptInterface()
+    path = "/home/ubuntu/finallyitworked"
+    returnvalue = null
+    try:
+        self.Wallet = UserWallet.Create(path=path,password=password_key)
+        contract = self.Wallet.GetDefaultContract()
+        key = self.Wallet.GetKey(contract.PublicKeyHash)
+        returnvalue = self.Wallet.ToJson()
+        print("Wallet %s" % json.dumps(self.Wallet.ToJson(), indent=4))
+        print("Pubkey %s" % key.PublicKey.encode_point(True))
+        except Exception as e:
+            print("Exception creating wallet: %s" % e)
+            self.Wallet = None
+            return
+                
     # Echo it
     return {
-        "post-body": body
+        "post-body": returnvalue
     }
 
 #

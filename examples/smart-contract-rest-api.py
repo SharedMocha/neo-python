@@ -165,7 +165,7 @@ def echo_post(request):
     password_key = to_aes_key(onetimepassword)
     walletinfo = PromptInterface()
     path = "/home/ubuntu/finallyitworked"
-    returnvalue = null
+    returnvalue = "Issue in create"
     try:
         self.Wallet = UserWallet.Create(path=path,password=password_key)
         #contract = self.Wallet.GetDefaultContract()

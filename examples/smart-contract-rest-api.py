@@ -168,10 +168,10 @@ def echo_post(request):
         returnvalue = self.Wallet.ToJson()
         print("Wallet %s" % json.dumps(self.Wallet.ToJson(), indent=4))
         print("Pubkey %s" % key.PublicKey.encode_point(True))
-        except Exception as e:
-            print("Exception creating wallet: %s" % e)
-            self.Wallet = None
-            return
+    except Exception as e:
+        print("Exception creating wallet: %s" % e)
+        self.Wallet = None
+        return
                 
     # Echo it
     return {

@@ -170,10 +170,10 @@ def echo_post(request):
     try:
         walletinfo.Wallet = UserWallet.Create(path=path,password=password_key)
         #contract = self.Wallet.GetDefaultContract()
-        key = walletinfo.Wallet.GetKey(contract.PublicKeyHash)
+        #key = walletinfo.Wallet.GetKey(contract.PublicKeyHash)
         returnvalue = walletinfo.Wallet.ToJson()
         print("Wallet %s" % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        print("Pubkey %s" % key.PublicKey.encode_point(True))
+        #print("Pubkey %s" % key.PublicKey.encode_point(True))
     except Exception as e:
         print("Exception creating wallet: %s" % e)
         walletinfo.Wallet = None

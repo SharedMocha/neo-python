@@ -155,17 +155,16 @@ def echo_msg(request, msg):
 def echo_post(request):
     # Parse POST JSON body
     body = json.loads(request.content.read().decode("utf-8"))
-    print("Bodyyyyyy %s" % body)
-    print("Bodyyyyyy passwprd %s" % body['onetimepassword'])
-    onetimepassword  = body.onetimepassword
-    wifkey = body.wifkey
+    print("Incomming Body %s" % body)
+    onetimepassword  = body['onetimepassword']
+    wifkey = body['wifkey']
     password_key = to_aes_key(onetimepassword)
     walletinfo = PromptInterface()
     path = "/home/ubuntu/finallyitworked"
     returnvalue = null
     try:
         self.Wallet = UserWallet.Create(path=path,password=password_key)
-        contract = self.Wallet.GetDefaultContract()
+        #contract = self.Wallet.GetDefaultContract()
         key = self.Wallet.GetKey(contract.PublicKeyHash)
         returnvalue = self.Wallet.ToJson()
         print("Wallet %s" % json.dumps(self.Wallet.ToJson(), indent=4))

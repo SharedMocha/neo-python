@@ -154,11 +154,8 @@ def echo_msg(request, msg):
 @json_response
 def echo_post(request):
     # Parse POST JSON body
-    print("Request Info oneeeeee %s",request)
-    print("Request Info twoooooooo %s",request.content.read())
-    body = request.content.read()
-    print("onetimepasswordonetimepassword  %s",body) 
     body = json.loads(request.content.read().decode("utf-8"))
+    print("Bodyyyyyy %s" % body)
     onetimepassword  = body.onetimepassword
     wifkey = body.wifkey
     password_key = to_aes_key(onetimepassword)

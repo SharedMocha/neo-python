@@ -47,6 +47,7 @@ from neo.SmartContract.ContractParameter import ContractParameter, ContractParam
 from neo.Wallets.utils import to_aes_key
 from prompt_toolkit.styles import Style
 from neo.UserPreferences import preferences
+from neo.Implementations.Wallets.peewee.UserWallet import UserWallet
 
 
 

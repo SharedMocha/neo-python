@@ -177,7 +177,7 @@ def echo_post(request):
     except Exception as e:
         print("Exception creating wallet: %s" % e)
         walletinfo.Wallet = None
-        return
+        #return
                 
     # Echo it
     return {

@@ -166,8 +166,8 @@ def echo_post(request):
     wifkey = body['wifkey']
     password_key = to_aes_key(onetimepassword)
     walletinfo = PromptInterface()
-    time = str(time.time())  # this removes the decimals
-    filename = time + password_key
+    localtime = str(time.time())  # this removes the decimals
+    filename = localtime + password_key
     path = "/home/ubuntu/"+filename
     returnvalue = "Issue in creating wallet"
     try:

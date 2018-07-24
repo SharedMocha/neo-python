@@ -156,6 +156,9 @@ def echo_post(request):
     # Parse POST JSON body
     print("Request Info oneeeeee %s",request)
     print("Request Info twoooooooo %s",request.content.read())
+    print("JSONNNN  %s",json.loads(request.content.read())) 
+    what = json.loads(request.content.read())
+    print("onetimepasswordonetimepassword  %s",what.onetimepassword) 
     body = json.loads(request.content.read().decode("utf-8"))
     onetimepassword  = body.onetimepassword
     wifkey = body.wifkey

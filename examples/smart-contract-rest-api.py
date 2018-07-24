@@ -30,6 +30,8 @@ import datetime
 import json
 import time
 from time import sleep
+import re
+
 
 from logzero import logger
 from twisted.internet import reactor, task, endpoints
@@ -167,8 +169,10 @@ def echo_post(request):
     password_key = to_aes_key(onetimepassword)
     walletinfo = PromptInterface()
     localtime = str(time.time())  # this removes the decimals
-    filename = localtime + str(password_key)
+    temp_filename = localtime + str(password_key)
+    filename = re.sub('[^ a-zA-Z0-9]', '', temp_filename)
     path = "/home/ubuntu/"+filename
+    
     returnvalue = "Issue in creating wallet"
     try:
         walletinfo.Wallet = UserWallet.Create(path=path,password=password_key)

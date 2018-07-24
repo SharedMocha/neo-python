@@ -166,7 +166,7 @@ def echo_post(request):
     password_key = to_aes_key(onetimepassword)
     walletinfo = PromptInterface()
     path = "/home/ubuntu/finallyitworked"
-    returnvalue = "Issue in create"
+    returnvalue = "Issue in creating wallet"
     try:
         walletinfo.Wallet = UserWallet.Create(path=path,password=password_key)
         contract = walletinfo.Wallet.GetDefaultContract()
@@ -177,7 +177,7 @@ def echo_post(request):
     except Exception as e:
         print("Exception creating wallet: %s" % e)
         walletinfo.Wallet = None
-        #return
+        return returnvalue
                 
     # Echo it
     return {

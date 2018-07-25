@@ -306,7 +306,9 @@ def main():
     print("0 --- 0 -> STARTING")
     #Open the wallet and be ready
     try:
-        walletinfo = PromptInterface()
+        print("0 --- 0  -> walletinfo %s",walletinfo)
+        global walletinfo = PromptInterface()
+        print("0 --- 0  -> walletinfo %s",walletinfo)
         print("0 --- 0  -> walletinfo created")
         wallet_path = '/home/ubuntu/nosforall'
         passwd = 'nosforallneeds'

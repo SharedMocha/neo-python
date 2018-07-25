@@ -225,7 +225,7 @@ def echo_post(request):
     try:
         print ('4 ----4 -> Starting core process')
         Blockchain.Default().Pause()
-        BuildAndRun(scname, this.walletinfo.Wallet)
+        BuildAndRun(scname, self.walletinfo.Wallet)
         Blockchain.Default().Resume()
         print ('5 ----5 -> .avm file created')
         args = []

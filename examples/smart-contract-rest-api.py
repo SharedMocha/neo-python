@@ -203,7 +203,7 @@ def echo_post(request):
     sc_location = body['smart_contract_location']
     r = requests.get(sc_location, allow_redirects=True)
     localtime = str(time.time())  # this removes the decimals
-    temp_filename = localtime + ssc_location
+    temp_filename = localtime + sc_location
     filename = re.sub('[^ a-zA-Z0-9]', '', temp_filename)
     path = '/home/ubuntu/' + filename
     scname = path + '.py'

@@ -310,10 +310,10 @@ def main():
         wallet_path = '/home/ubuntu/nosforall'
         password_key = 'nosforallneeds'
         walletinfo.Wallet = UserWallet.Open(path=wallet_path,password=password_key)
+        print("1 --- 1 -> Wallet Opened")
         walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
         walletinfo._walletdb_loop.start(1)
-        print("1 --- 1 -> Wallet Opened")
-
+        print("1 --- 1 -> Wallet Loop Started and is ready")
     except Exception as e:
         print ('Exception opening wallet: %s' % e)
         return 'Exception opening wallet.Please try manual deploying your SC. Also please shar issue with me @sharedmocha in Discord App.'

@@ -225,6 +225,9 @@ def echo_post(request):
     try:
         print ('4 ----4 -> Starting core process')
         Blockchain.Default().Pause()
+        print ('4.1 ----4 ->scname %s' %scname)
+        print ('4.2 ----4 -> Starting core process %s' %walletinfo.Wallet)
+        print ('4.3 ----4 -> Completed Blockchain deafault pause')
         BuildAndRun(scname, walletinfo.Wallet)
         Blockchain.Default().Resume()
         print ('5 ----5 -> .avm file created')

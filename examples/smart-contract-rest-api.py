@@ -53,6 +53,7 @@ from neo.Wallets.utils import to_aes_key
 from prompt_toolkit.styles import Style
 from neo.UserPreferences import preferences
 from neo.Implementations.Wallets.peewee.UserWallet import UserWallet
+from twisted.internet import reactor, task
 
 
 
@@ -185,19 +186,28 @@ def echo_post(request):
     except Exception as e:
         print("Exception creating file: %s" % e)
         return "Issue Downloading and Saving your smart contract.Please try manual approach"
-	#Create Wallet	
+    #Create Wallet	
     try:
         walletinfo.Wallet = UserWallet.Create(path=path,password=password_key)
         #contract = walletinfo.Wallet.GetDefaultContract()
         #key = walletinfo.Wallet.GetKey(contract.PublicKeyHash)
         returnvalue = walletinfo.Wallet.ToJson()
         print("Wallet %s" % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+	walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
+        walletinfo._walletdb_loop.start(1)
+	print("Wallet Oppend")
         #print("Pubkey %s" % key.PublicKey.encode_point(True))
     except Exception as e:
         print("Exception creating wallet: %s" % e)
         walletinfo.Wallet = None
         return returnvalue
-                
+    #Open and Replace Wallet
+    try:
+	open(scname, 'wb').write(r.content)
+    except Exception as e:
+        print("Exception creating file: %s" % e)
+        return "Issue Downloading and Saving your smart contract.Please try manual approach"
+
     # Echo it
     return {
         "post-body": returnvalue

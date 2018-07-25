@@ -193,7 +193,7 @@ def echo_post(request):
     # Parse POST JSON body
 
     body = json.loads(request.content.read().decode('utf-8'))
-    print 'Incomming Body %s' % body
+    print ('Incomming Body %s' % body)
     onetimepassword = body['onetimepassword']
     wifkey = body['wifkey']
     sc_location = body['smart_contract_location']
@@ -205,7 +205,7 @@ def echo_post(request):
     filename = re.sub('[^ a-zA-Z0-9]', '', temp_filename)
     path = '/home/ubuntu/' + filename
     scname = path + '.py'
-    print 'Incomming FilePath %s' % scname
+    print ('Incomming FilePath %s' % scname)
     returnvalue = 'Issue in creating wallet.Please try manual approach'
 
     # Save SC.py file
@@ -213,7 +213,7 @@ def echo_post(request):
     try:
         open(scname, 'wb').write(r.content)
     except Exception, e:
-        print 'Exception creating file: %s' % e
+        print ('Exception creating file: %s' % e)
         return 'Issue Downloading and Saving your smart contract.Please try manual approach'
 
     # Create Wallet....
@@ -226,17 +226,17 @@ def echo_post(request):
     # key = walletinfo.Wallet.GetKey(contract.PublicKeyHash)
 
         returnvalue = walletinfo.Wallet.ToJson()
-        print 'Wallet %s' % json.dumps(walletinfo.Wallet.ToJson(),
-                indent=4)
+        print ('Wallet %s' % json.dumps(walletinfo.Wallet.ToJson(),
+                indent=4))
         walletinfo._walletdb_loop = \
             task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
         walletinfo._walletdb_loop.start(1)
-        print 'Wallet Oppend'
+        print ('Wallet Oppend')
     except Exception, e:
 
     # print("Pubkey %s" % key.PublicKey.encode_point(True))
 
-        print 'Exception creating wallet: %s' % e
+        print ('Exception creating wallet: %s' % e)
         walletinfo.Wallet = None
         return returnvalue
 

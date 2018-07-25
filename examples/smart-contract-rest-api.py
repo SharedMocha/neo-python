@@ -244,8 +244,7 @@ def echo_post(request):
         args.append("True")
         print ('5 ----5.3')
         args.append("False")
-        print ('5 ----5.4')
-        print ('6 ----6 -> args creation completed %' %args)          
+        print ('6 ----5.4')
         args, from_addr = get_from_addr(args)
         function_code = LoadContract(args[1:])
         if function_code:

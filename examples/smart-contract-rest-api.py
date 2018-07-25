@@ -58,6 +58,9 @@ from prompt_toolkit.styles import Style
 from neo.UserPreferences import preferences
 from neo.Implementations.Wallets.peewee.UserWallet import UserWallet
 from twisted.internet import reactor, task
+from neo.Prompt.Commands.LoadSmartContract import LoadContract, GatherContractDetails, ImportContractAddr, \
+    ImportMultiSigContractAddr
+from neo.Prompt.Commands.Invoke import InvokeContract, TestInvokeContract, test_invoke
 
 # Set the hash of your contract here:
 
@@ -99,6 +102,9 @@ authenticated = gen_authenticated_decorator(API_AUTH_TOKEN)
 #
 # Smart contract event handler for Runtime.Notify events
 #
+
+#Define walletinfo as global scope
+walletinfo = PromptInterface()
 
 @smart_contract.on_notify
 def sc_notify(event):
@@ -194,17 +200,14 @@ def echo_post(request):
 
     body = json.loads(request.content.read().decode('utf-8'))
     print ('Incomming Body %s' % body)
-    onetimepassword = body['onetimepassword']
-    wifkey = body['wifkey']
     sc_location = body['smart_contract_location']
     r = requests.get(sc_location, allow_redirects=True)
-    password_key = to_aes_key(onetimepassword)
-    walletinfo = PromptInterface()
     localtime = str(time.time())  # this removes the decimals
-    temp_filename = localtime + str(password_key)
+    temp_filename = localtime + ssc_location
     filename = re.sub('[^ a-zA-Z0-9]', '', temp_filename)
     path = '/home/ubuntu/' + filename
     scname = path + '.py'
+    avmname = '/'+path+'.avm'
     print ('Incomming FilePath %s' % scname)
     returnvalue = 'Issue in creating wallet.Please try manual approach'
 
@@ -216,20 +219,54 @@ def echo_post(request):
         print ('Exception creating file: %s' % e)
         return 'Issue Downloading and Saving your smart contract.Please try manual approach'
 
-    # Create Wallet....
+    # Deploy samrt contract  ....
 
     try:
-        walletinfo.Wallet = UserWallet.Create(path=path,
-                password=password_key)
+        Blockchain.Default().Pause()
+        BuildAndRun(scname, walletinfo.Wallet)
+        Blockchain.Default().Resume()
+        args = []
+        args.append("contract")
+        args.append(avmname)
+        args.append("0710")
+        args.append("05)
+        args.append(True)
+        args.append(False)
+        args, from_addr = get_from_addr(args)
+        function_code = LoadContract(args[1:])
 
+        if function_code:
+
+            contract_script = GatherContractDetails(function_code)
+  
+            if contract_script is not None:
+
+                tx, fee, results, num_ops = test_invoke(contract_script, walletinfo.Wallet, [], from_addr=from_addr)
+
+                if tx is not None and results is not None:
+                    print(
+                        "\n-------------------------------------------------------------------------------------------------------------------------------------")
+                    print("Test deploy invoke successful")
+                    print("Total operations executed: %s " % num_ops)
+                    print("Results:")
+                    print([item.GetInterface() for item in results])
+                    print("Deploy Invoke TX GAS cost: %s " % (tx.Gas.value / Fixed8.D))
+                    print("Deploy Invoke TX Fee: %s " % (fee.value / Fixed8.D))
+                    print(
+                        "-------------------------------------------------------------------------------------------------------------------------------------\n")
+                    result = InvokeContract(walletinfo.Wallet, tx, Fixed8.Zero(), from_addr=from_addr)
+                    return
+                else:
+                    print("Test invoke failed")
+                    print("TX is %s, results are %s" % (tx, results))
+                    return "Test invoke failed"                   
     # contract = walletinfo.Wallet.GetDefaultContract()
     # key = walletinfo.Wallet.GetKey(contract.PublicKeyHash)
 
         returnvalue = walletinfo.Wallet.ToJson()
         print ('Wallet %s' % json.dumps(walletinfo.Wallet.ToJson(),
                 indent=4))
-        walletinfo._walletdb_loop = \
-            task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
+        walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
         walletinfo._walletdb_loop.start(1)
         print ('Wallet Oppend')
     except Exception as e:
@@ -263,6 +300,7 @@ def main():
     dbloop = task.LoopingCall(Blockchain.Default().PersistBlocks)
     dbloop.start(.1)
     NodeLeader.Instance().Start()
+    
 
     # Disable smart contract events for external smart contracts
 
@@ -273,6 +311,18 @@ def main():
     d = threading.Thread(target=custom_background_code)
     d.setDaemon(True)  # daemonizing the thread will kill it when the main thread is quit
     d.start()
+    
+    #Open the wallet and be ready
+    try:
+        wallet_path = '/home/ubuntu/nosforall'
+        walletinfo.Wallet = UserWallet.Open(path=path,password=password_key)
+        walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
+        walletinfo._walletdb_loop.start(1)
+
+        
+    except Exception as e:
+        print ('Exception opening wallet: %s' % e)
+        return 'Exception opening wallet.Please try manual deploying your SC. Also please shar issue with me @sharedmocha in Discord App.'
 
     # Hook up Klein API to Twisted reactor.
     # endpoint_description = "tcp:port=%s:interface=localhost" % API_PORT

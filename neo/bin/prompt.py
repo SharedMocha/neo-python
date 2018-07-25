@@ -398,6 +398,8 @@ class PromptInterface:
 
     def do_build(self, arguments):
         print(arguments)
+        print ('4.2 ----4 -> Starting core process %s' %self.Wallet)
+        print ('4.3 ----4 -> Completed Blockchain deafault pause')
         Blockchain.Default().Pause()
         BuildAndRun(arguments, self.Wallet)
         Blockchain.Default().Resume()

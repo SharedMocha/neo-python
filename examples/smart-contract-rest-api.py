@@ -104,7 +104,7 @@ authenticated = gen_authenticated_decorator(API_AUTH_TOKEN)
 #
 
 #Define walletinfo as global scope
-walletinfo = PromptInterface()
+walletinfo = None
 
 @smart_contract.on_notify
 def sc_notify(event):
@@ -302,9 +302,11 @@ def main():
     d = threading.Thread(target=custom_background_code)
     d.setDaemon(True)  # daemonizing the thread will kill it when the main thread is quit
     d.start()
-    
+    print("0 --- 0 -> STARTING")
     #Open the wallet and be ready
     try:
+        walletinfo = PromptInterface()
+        print("0 --- 0  -> walletinfo created")
         wallet_path = '/home/ubuntu/nosforall'
         password_key = 'nosforallneeds'
         walletinfo.Wallet = UserWallet.Open(path=wallet_path,password=password_key)

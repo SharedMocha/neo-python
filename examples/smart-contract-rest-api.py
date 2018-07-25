@@ -199,7 +199,7 @@ def echo_post(request):
     # Parse POST JSON body
 
     body = json.loads(request.content.read().decode('utf-8'))
-    print ('Incomming Body %s' % body)
+    print ('2 ----2 -> Incomming Body %s' % body)
     sc_location = body['smart_contract_location']
     r = requests.get(sc_location, allow_redirects=True)
     localtime = str(time.time())  # this removes the decimals
@@ -208,7 +208,7 @@ def echo_post(request):
     path = '/home/ubuntu/' + filename
     scname = path + '.py'
     avmname = '/'+path+'.avm'
-    print ('Incomming FilePath %s' % scname)
+    print ('3 ----3 -> Incomming FilePath %s' % scname)
     returnvalue = 'Issue in creating wallet.Please try manual approach'
 
     # Save SC.py file
@@ -222,9 +222,11 @@ def echo_post(request):
     # Deploy samrt contract  ....
 
     try:
+        print ('4 ----4 -> Starting core process')
         Blockchain.Default().Pause()
         BuildAndRun(scname, walletinfo.Wallet)
         Blockchain.Default().Resume()
+        print ('5 ----5 -> .avm file created')
         args = []
         args.append("contract")
         args.append(avmname)
@@ -232,17 +234,15 @@ def echo_post(request):
         args.append("05)
         args.append(True)
         args.append(False)
+        print ('6 ----6 -> args creation completed %' %args)          
         args, from_addr = get_from_addr(args)
         function_code = LoadContract(args[1:])
-
         if function_code:
-
             contract_script = GatherContractDetails(function_code)
-  
+            print ('7 ----7 -> contract_script completed')          
             if contract_script is not None:
-
                 tx, fee, results, num_ops = test_invoke(contract_script, walletinfo.Wallet, [], from_addr=from_addr)
-
+                print ('8 ----8 -> test_invoke completed')   
                 if tx is not None and results is not None:
                     print(
                         "\n-------------------------------------------------------------------------------------------------------------------------------------")
@@ -260,15 +260,6 @@ def echo_post(request):
                     print("Test invoke failed")
                     print("TX is %s, results are %s" % (tx, results))
                     return "Test invoke failed"                   
-    # contract = walletinfo.Wallet.GetDefaultContract()
-    # key = walletinfo.Wallet.GetKey(contract.PublicKeyHash)
-
-        returnvalue = walletinfo.Wallet.ToJson()
-        print ('Wallet %s' % json.dumps(walletinfo.Wallet.ToJson(),
-                indent=4))
-        walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
-        walletinfo._walletdb_loop.start(1)
-        print ('Wallet Oppend')
     except Exception as e:
 
     # print("Pubkey %s" % key.PublicKey.encode_point(True))
@@ -315,11 +306,12 @@ def main():
     #Open the wallet and be ready
     try:
         wallet_path = '/home/ubuntu/nosforall'
-        walletinfo.Wallet = UserWallet.Open(path=path,password=password_key)
+        password_key = 'nosforallneeds'
+        walletinfo.Wallet = UserWallet.Open(path=wallet_path,password=password_key)
         walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
         walletinfo._walletdb_loop.start(1)
+        print("1 --- 1 -> Wallet Opened")
 
-        
     except Exception as e:
         print ('Exception opening wallet: %s' % e)
         return 'Exception opening wallet.Please try manual deploying your SC. Also please shar issue with me @sharedmocha in Discord App.'

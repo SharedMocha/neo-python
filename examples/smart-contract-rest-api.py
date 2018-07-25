@@ -235,9 +235,12 @@ def echo_post(request):
         print ('5 ----5 -> .avm file created')
         args = []
         args.append("contract")
+        print ('5 ----5.1 %s' %avmname)
         args.append(avmname)
+        print ('5 ----5.1')
         args.append("0710")
         args.append("05")
+        print ('5 ----5.1')
         args.append(True)
         args.append(False)
         print ('6 ----6 -> args creation completed %' %args)          

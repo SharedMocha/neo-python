@@ -231,7 +231,7 @@ def echo_post(request):
         args.append("contract")
         args.append(avmname)
         args.append("0710")
-        args.append("05)
+        args.append("05")
         args.append(True)
         args.append(False)
         print ('6 ----6 -> args creation completed %' %args)          

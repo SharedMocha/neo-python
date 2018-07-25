@@ -176,10 +176,12 @@ def echo_post(request):
     temp_filename = localtime + str(password_key)
     filename = re.sub('[^ a-zA-Z0-9]', '', temp_filename)
     path = "/home/ubuntu/"+filename
+    scname = path+".py"
+    print("Incomming FilePath %s" % scname)
     returnvalue = "Issue in creating wallet.Please try manual approach"
     #Save SC.py file
     try:
-        open(path, 'wb').write(r.content)
+        open(scname, 'wb').write(r.content)
     except Exception as e:
         print("Exception creating file: %s" % e)
         return "Issue Downloading and Saving your smart contract.Please try manual approach"

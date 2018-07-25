@@ -397,6 +397,7 @@ class PromptInterface:
             print("Import of '%s' not implemented" % item)
 
     def do_build(self, arguments):
+        print(arguments)
         Blockchain.Default().Pause()
         BuildAndRun(arguments, self.Wallet)
         Blockchain.Default().Resume()

@@ -225,7 +225,7 @@ def echo_post(request):
     try:
         print ('4 ----4 -> Starting core process')
         Blockchain.Default().Pause()
-        BuildAndRun(scname, self.walletinfo.Wallet)
+        BuildAndRun(scname, walletinfo.Wallet)
         Blockchain.Default().Resume()
         print ('5 ----5 -> .avm file created')
         args = []
@@ -306,7 +306,6 @@ def main():
     print("0 --- 0 -> STARTING")
     #Open the wallet and be ready
     try:
-        print("0 --- 0  -> walletinfo %s",walletinfo)
         global walletinfo
         walletinfo = PromptInterface()
         print("0 --- 0  -> walletinfo %s",walletinfo)

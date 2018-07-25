@@ -805,7 +805,11 @@ class PromptInterface:
             return
 
         args, from_addr = get_from_addr(args)
-
+        print("-------------------------------------->")
+        print(args)
+        print("<<<<<<<<<<<<-------------------------------------->")
+        print(from_addr)
+        print("<<<<<<<<<<<<----------------------+++++---------------->")
         function_code = LoadContract(args[1:])
 
         if function_code:

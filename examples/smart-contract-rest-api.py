@@ -31,6 +31,8 @@ import json
 import time
 from time import sleep
 import re
+import requests
+
 
 
 from logzero import logger
@@ -166,14 +168,22 @@ def echo_post(request):
     print("Incomming Body %s" % body)
     onetimepassword  = body['onetimepassword']
     wifkey = body['wifkey']
+	sc_location = body['smart_contract_location']
+	r = requests.get(url, allow_redirects=True)
     password_key = to_aes_key(onetimepassword)
     walletinfo = PromptInterface()
     localtime = str(time.time())  # this removes the decimals
     temp_filename = localtime + str(password_key)
     filename = re.sub('[^ a-zA-Z0-9]', '', temp_filename)
     path = "/home/ubuntu/"+filename
-    
-    returnvalue = "Issue in creating wallet"
+    returnvalue = "Issue in creating wallet.Please try manual approach"
+	#Save SC.py file
+	try:
+        open(path, 'wb').write(r.content)
+    except Exception as e:
+        print("Exception creating file: %s" % e)
+        return "Issue Downloading and Saving your smart contract.Please try manual approach"
+	#Create Wallet	
     try:
         walletinfo.Wallet = UserWallet.Create(path=path,password=password_key)
         contract = walletinfo.Wallet.GetDefaultContract()

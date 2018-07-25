@@ -145,14 +145,13 @@ def GatherContractDetails(function_code):
 
     from neo.bin.prompt import PromptInterface
 
-    session = PromptSession(completer=PromptInterface.prompt_completer,
-                            history=PromptInterface.history)
+    #session = PromptSession(completer=PromptInterface.prompt_completer,history=PromptInterface.history)
 
-    name = session.prompt("[Contract Name] > ")
-    version = session.prompt("[Contract Version] > ")
-    author = session.prompt("[Contract Author] > ")
-    email = session.prompt("[Contract Email] > ")
-    description = session.prompt("[Contract Description] > ")
+    name = "Deployed by Auto Tool"
+    version = "1.0"
+    author = "Deployed by Auto Tool"
+    email = "Deployed by Auto Tool"
+    description = "Deployed by Auto Tool"
 
     print("Creating smart contract....")
     print("                 Name: %s " % name)

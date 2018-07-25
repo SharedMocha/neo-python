@@ -308,9 +308,10 @@ def main():
         walletinfo = PromptInterface()
         print("0 --- 0  -> walletinfo created")
         wallet_path = '/home/ubuntu/nosforall'
-        password_key = 'nosforallneeds'
+        passwd = 'nosforallneeds'
         print("0 --- 0  -> About to Open wallet %s",password_key)
         print("0 --- 0  -> About to Open wallet %s",wallet_path)
+        password_key = to_aes_key(passwd)
         #walletinfo.Wallet = UserWallet.Open(path=wallet_path,password=password_key)
         walletinfo.Wallet = UserWallet.Open(wallet_path,password_key)
         print("1 --- 1 -> Wallet Opened")

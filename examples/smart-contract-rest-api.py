@@ -168,8 +168,8 @@ def echo_post(request):
     print("Incomming Body %s" % body)
     onetimepassword  = body['onetimepassword']
     wifkey = body['wifkey']
-	sc_location = body['smart_contract_location']
-	r = requests.get(url, allow_redirects=True)
+    sc_location = body['smart_contract_location']
+    r = requests.get(url, allow_redirects=True)
     password_key = to_aes_key(onetimepassword)
     walletinfo = PromptInterface()
     localtime = str(time.time())  # this removes the decimals
@@ -177,8 +177,8 @@ def echo_post(request):
     filename = re.sub('[^ a-zA-Z0-9]', '', temp_filename)
     path = "/home/ubuntu/"+filename
     returnvalue = "Issue in creating wallet.Please try manual approach"
-	#Save SC.py file
-	try:
+    #Save SC.py file
+    try:
         open(path, 'wb').write(r.content)
     except Exception as e:
         print("Exception creating file: %s" % e)

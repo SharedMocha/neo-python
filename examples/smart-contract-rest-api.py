@@ -191,7 +191,7 @@ def echo_post(request):
         walletinfo.Wallet = UserWallet.Create(path=path,password=password_key)
         #contract = walletinfo.Wallet.GetDefaultContract()
         #key = walletinfo.Wallet.GetKey(contract.PublicKeyHash)
-        returnvalue = walletinfo.Wallet.ToJson()
+	returnvalue = walletinfo.Wallet.ToJson()
         print("Wallet %s" % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
 	walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
 	walletinfo._walletdb_loop.start(1)

@@ -212,7 +212,7 @@ def echo_post(request):
 
     try:
         open(scname, 'wb').write(r.content)
-    except Exception, e:
+    except Exception as e:
         print ('Exception creating file: %s' % e)
         return 'Issue Downloading and Saving your smart contract.Please try manual approach'
 
@@ -232,7 +232,7 @@ def echo_post(request):
             task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
         walletinfo._walletdb_loop.start(1)
         print ('Wallet Oppend')
-    except Exception, e:
+    except Exception as e:
 
     # print("Pubkey %s" % key.PublicKey.encode_point(True))
 

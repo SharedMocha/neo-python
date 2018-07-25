@@ -181,7 +181,8 @@ def echo_post(request):
     returnvalue = "Issue in creating wallet.Please try manual approach"
     #Save SC.py file
     try:
-        open(scname, 'wb').write(r.content)
+        f = open(scname, 'wb').write(r.content)
+	f.close()
     except Exception as e:
         print("Exception creating file: %s" % e)
         return "Issue Downloading and Saving your smart contract.Please try manual approach"

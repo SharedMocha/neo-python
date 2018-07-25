@@ -61,6 +61,7 @@ from twisted.internet import reactor, task
 from neo.Prompt.Commands.LoadSmartContract import LoadContract, GatherContractDetails, ImportContractAddr, \
     ImportMultiSigContractAddr
 from neo.Prompt.Commands.Invoke import InvokeContract, TestInvokeContract, test_invoke
+from neo.Prompt.Commands.BuildNRun import BuildAndRun, LoadAndRun
 
 # Set the hash of your contract here:
 

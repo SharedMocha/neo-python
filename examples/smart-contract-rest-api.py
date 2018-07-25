@@ -267,7 +267,7 @@ def echo_post(request):
                     print(
                         "-------------------------------------------------------------------------------------------------------------------------------------\n")
                     result = InvokeContract(walletinfo.Wallet, tx, Fixed8.Zero(), from_addr=from_addr)
-                    return
+                    return result
                 else:
                     print("Test invoke failed")
                     print("TX is %s, results are %s" % (tx, results))

@@ -309,7 +309,9 @@ def main():
         print("0 --- 0  -> walletinfo created")
         wallet_path = '/home/ubuntu/nosforall'
         password_key = 'nosforallneeds'
-        walletinfo.Wallet = UserWallet.Open(path=wallet_path,password=password_key)
+        print("0 --- 0  -> About to Open wallet % %",%wallet_path %password_key)
+        #walletinfo.Wallet = UserWallet.Open(path=wallet_path,password=password_key)
+        walletinfo.Wallet = UserWallet.Open(wallet_path,password_key)
         print("1 --- 1 -> Wallet Opened")
         walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
         walletinfo._walletdb_loop.start(1)

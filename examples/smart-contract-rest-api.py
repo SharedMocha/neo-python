@@ -294,6 +294,7 @@ def echo_post(request):
 
     # Open and Replace Wallet
     # Echo it
+    # test
 
     return {'post-body': returnvalue}
 

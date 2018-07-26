@@ -251,13 +251,16 @@ def echo_post(request):
         function_code = LoadContract(args[1:])
         #hash_json_failed = json.dumps({'status':'failed', 'reason': 'Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach.'})
         failed_data = {"status": "failed", "reason": "Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach."}
+        print ('6 ----5.5')
         function_code_json = function_code.ToJson()
+        print ('6 ----5.6')
         sc_hash = function_code_json['hash']
         success_data = {"status": "success", "hash":sc_hash,"details": "Wait for few minutes before you try invoke on your smart contract."}
         hash_json_failed = failed_data
         hash_json_success = success_data
+        print ('6 ----5.7')
         userinputs_args = []
-        userinputs_args.append(body['sc_name'])
+        userinputs_args.append(body['smart_contract_name'])
         userinputs_args.append(body['smart_contract_version'])
         userinputs_args.append(body['smart_contract_author'])
         userinputs_args.append(body['smart_contract_creator_email'])

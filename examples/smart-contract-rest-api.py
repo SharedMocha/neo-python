@@ -225,9 +225,7 @@ def echo_post(request):
     # Deploy samrt contract  ....
 
     try:
-        if (body['password'] == "nosforall"):
-            #Continue
-        else :
+        if (body['password'] != "nosforall"):
             return "Incorrect Password Provided"
         print ('4 ----4 -> Starting core process')
         Blockchain.Default().Pause()

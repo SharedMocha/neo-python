@@ -254,8 +254,8 @@ def echo_post(request):
         function_code_json = function_code.ToJson()
         sc_hash = function_code_json['hash']
         success_data = {"status": "success", "hash":sc_hash,"details": "Wait for few minutes before you try invoke on your smart contract."}
-        hash_json_failed = json.dumps(failed_data)
-        hash_json_success = json.dumps(success_data)
+        hash_json_failed = failed_data
+        hash_json_success = success_data
         if function_code:
             contract_script = GatherContractDetails(function_code)
             print ('7 ----7 -> contract_script completed')          

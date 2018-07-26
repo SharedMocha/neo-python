@@ -251,10 +251,13 @@ def echo_post(request):
         function_code = LoadContract(args[1:])
         #hash_json_failed = json.dumps({'status':'failed', 'reason': 'Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach.'})
         hash_json_failed = "{'status':'failed', 'reason': 'Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach.'}"
+        my_json_string = json.dumps({'key1': val1, 'key2': val2})
+        
         function_code_json = json.dumps(function_code.ToJson())
         print ("------------------------------------- %s", function_code_json)
-        sc_hash = function_code_json.hash
+        sc_hash = function_code_json['hash']
         hash_json_success = json.dumps({'status':'success', 'hash':sc_hash,'details': 'Wait for few minutes before you try invoke on your smart contract.'})
+        print("================== %s"hash_json_success)
         if function_code:
             contract_script = GatherContractDetails(function_code)
             print ('7 ----7 -> contract_script completed')          
@@ -274,9 +277,9 @@ def echo_post(request):
                         "-------------------------------------------------------------------------------------------------------------------------------------\n")
                     result = InvokeContract(walletinfo.Wallet, tx, Fixed8.Zero(), from_addr=from_addr)
                     if result:
-                        return hash_json_failed
+                        return my_json_string
                     else:
-                        return hash_json_failed
+                        return my_json_string
                                         
                     #return result
                 else:

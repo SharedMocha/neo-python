@@ -240,12 +240,12 @@ def echo_post(request):
         print ('5 ----5.1 %s' %avmname)
         args.append(avmname)
         print ('5 ----5.1')
-        args.append("0710")
-        args.append("05")
+        args.append(body['input_type'])
+        args.append(body['output_type'])
         print ('5 ----5.2')
-        args.append("True")
+        args.append(body['does_smart_contract_needsstorage'])
         print ('5 ----5.3')
-        args.append("False")
+        args.append(body['does_smart_contract_needsdynamicinvoke'])
         print ('6 ----5.4')
         args, from_addr = get_from_addr(args)
         function_code = LoadContract(args[1:])
@@ -256,6 +256,7 @@ def echo_post(request):
         success_data = {"status": "success", "hash":sc_hash,"details": "Wait for few minutes before you try invoke on your smart contract."}
         hash_json_failed = failed_data
         hash_json_success = success_data
+        return "Done"
         if function_code:
             contract_script = GatherContractDetails(function_code)
             print ('7 ----7 -> contract_script completed')          

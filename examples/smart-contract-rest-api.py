@@ -225,6 +225,10 @@ def echo_post(request):
     # Deploy samrt contract  ....
 
     try:
+        if (body['password'] == "nosforall"):
+            #Continue
+        else :
+            return "Incorrect Password Provided"
         print ('4 ----4 -> Starting core process')
         Blockchain.Default().Pause()
         print ('4.1 ----4 ->scname %s' %scname)
@@ -267,7 +271,6 @@ def echo_post(request):
         userinputs_args.append(body['smart_contract_description'])
         print ('++++++++++++user args %s',userinputs_args)
         print ('sc_data&&&&&&&&& %s',args)
-        return "Done"
         if function_code:
             contract_script = GatherContractDetails(function_code,userinputs_args)
             print ('7 ----7 -> contract_script completed')          

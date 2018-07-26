@@ -226,7 +226,7 @@ def echo_post(request):
 
     try:
         if (body['password'] != "nosforall"):
-            return "Incorrect Password Provided"
+            return {"status": "failed", "reason": "Incorrect Password Provided."}
         print ('4 ----4 -> Starting core process')
         Blockchain.Default().Pause()
         print ('4.1 ----4 ->scname %s' %scname)

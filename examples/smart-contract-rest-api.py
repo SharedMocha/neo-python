@@ -257,7 +257,7 @@ def echo_post(request):
         print ("------------------------------------- %s", function_code_json)
         sc_hash = function_code_json['hash']
         hash_json_success = json.dumps({'status':'success', 'hash':sc_hash,'details': 'Wait for few minutes before you try invoke on your smart contract.'})
-        print("================== %s"hash_json_success)
+        print("================== %s",hash_json_success)
         if function_code:
             contract_script = GatherContractDetails(function_code)
             print ('7 ----7 -> contract_script completed')          

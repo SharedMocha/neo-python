@@ -256,7 +256,6 @@ def echo_post(request):
         success_data = {"status": "success", "hash":sc_hash,"details": "Wait for few minutes before you try invoke on your smart contract."}
         hash_json_failed = failed_data
         hash_json_success = success_data
-        return "Done"
         userinputs_args = []
         userinputs_args.append(body['sc_name'])
         userinputs_args.append(body['smart_contract_version'])
@@ -265,7 +264,7 @@ def echo_post(request):
         userinputs_args.append(body['smart_contract_description'])
         print ('++++++++++++user args %s',userinputs_args)
         print ('sc_data&&&&&&&&& %s',args)
-
+        return "Done"
         if function_code:
             contract_script = GatherContractDetails(function_code,userinputs_args)
             print ('7 ----7 -> contract_script completed')          

@@ -251,6 +251,7 @@ def echo_post(request):
         function_code = LoadContract(args[1:])
         hash_json_failed = json.dumps({'status':'failed', 'reason': 'Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach.'})
         function_code_json = json.dumps(function_code.ToJson())
+        print ("------------------------------------- %s", %function_code_json)
         sc_hash = function_code_json.hash
         hash_json_success = json.dumps({'status':'success', 'hash':sc_hash,'details': 'Wait for few minutes before you try invoke on your smart contract.'})
         if function_code:

@@ -257,8 +257,17 @@ def echo_post(request):
         hash_json_failed = failed_data
         hash_json_success = success_data
         return "Done"
+        userinputs_args = []
+        userinputs_args.append(body['sc_name'])
+        userinputs_args.append(body['smart_contract_version'])
+        userinputs_args.append(body['smart_contract_author'])
+        userinputs_args.append(body['smart_contract_creator_email'])
+        userinputs_args.append(body['smart_contract_description'])
+        print ('++++++++++++user args %s',userinputs_args)
+        print ('sc_data&&&&&&&&& %s',args)
+
         if function_code:
-            contract_script = GatherContractDetails(function_code)
+            contract_script = GatherContractDetails(function_code,userinputs_args)
             print ('7 ----7 -> contract_script completed')          
             if contract_script is not None:
                 tx, fee, results, num_ops = test_invoke(contract_script, walletinfo.Wallet, [], from_addr=from_addr)

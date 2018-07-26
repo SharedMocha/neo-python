@@ -251,7 +251,7 @@ def echo_post(request):
         function_code = LoadContract(args[1:])
         #hash_json_failed = json.dumps({'status':'failed', 'reason': 'Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach.'})
         hash_json_failed = "{'status':'failed', 'reason': 'Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach.'}"
-        my_json_string = json.dumps({'key1': val1, 'key2': val2})
+        my_json_string = json.dumps({'key1': '123', 'key2': 'val2'})
         
         function_code_json = json.dumps(function_code.ToJson())
         print ("------------------------------------- %s", function_code_json)

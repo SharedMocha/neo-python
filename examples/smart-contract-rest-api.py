@@ -250,16 +250,12 @@ def echo_post(request):
         args, from_addr = get_from_addr(args)
         function_code = LoadContract(args[1:])
         #hash_json_failed = json.dumps({'status':'failed', 'reason': 'Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach.'})
-        hash_json_failed = "{'status':'failed', 'reason': 'Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach.'}"
-        my_json_string = json.dumps({'key1': '123', 'key2': 'val2'})
-        
-        #function_code_json = json.dumps(function_code.ToJson())
+        failed_data = {"status": "failed", "reason": "Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach."}
         function_code_json = function_code.ToJson()
-        print ("------------------------------------- %s", function_code_json)
         sc_hash = function_code_json['hash']
-        print("================== %s",sc_hash)
-        hash_json_success = json.dumps({'status':'success', 'hash':sc_hash,'details': 'Wait for few minutes before you try invoke on your smart contract.'})
-        print("=================________= %s",hash_json_success)
+        success_data = {"status": "success", "hash":sc_hash,"details": "Wait for few minutes before you try invoke on your smart contract."}
+        hash_json_failed = json.dumps(failed_data)
+        hash_json_success = json.dumps(success_data)
         if function_code:
             contract_script = GatherContractDetails(function_code)
             print ('7 ----7 -> contract_script completed')          
@@ -279,9 +275,9 @@ def echo_post(request):
                         "-------------------------------------------------------------------------------------------------------------------------------------\n")
                     result = InvokeContract(walletinfo.Wallet, tx, Fixed8.Zero(), from_addr=from_addr)
                     if result:
-                        return my_json_string
+                        return hash_json_success
                     else:
-                        return my_json_string
+                        return hash_json_failed
                                         
                     #return result
                 else:

@@ -199,7 +199,7 @@ def echo_msg(request, msg):
 @authenticated
 @json_response
 @cors_header
-def echo_post(request):
+def echo_post(self,request):
 
     # Parse POST JSON body
     body = json.loads(request.content.read().decode('utf-8'))

@@ -22,6 +22,25 @@ def json_response(func):
         return json.dumps(res)
     return wrapper
 
+def cors_header(func):
+    """
+    @json_response decorator adds response header for content type,
+    and json-dumps response object.
+
+    Example usage:
+
+        @json_response
+        def test(request):
+            return { "hello": "world" }
+    """
+    @wraps(func)
+    def wrapper(request, *args, **kwargs):
+        res = func(request, *args, **kwargs)
+        request.setHeader('Access-Control-Allow-Origin', '*')
+        request.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With')
+        return res
+    return wrapper
+
 
 def catch_exceptions(func):
     """

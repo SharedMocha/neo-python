@@ -184,6 +184,7 @@ def home(request):
 @catch_exceptions
 @authenticated
 @json_response
+@cors_header
 def echo_msg(request, msg):
 
     # promptInterface = PromptInterface();

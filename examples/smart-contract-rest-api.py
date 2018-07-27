@@ -194,7 +194,7 @@ def echo_msg(request, msg):
     return {'echo': msg}
 
 
-@app.route('/echo-post', methods=['POST'])
+@app.route('/api/deploysc', methods=['POST'])
 @catch_exceptions
 @authenticated
 @json_response
@@ -291,7 +291,7 @@ def echo_post(request):
                         return hash_json_success
                     else:
                         #return hash_json_failed
-                        return hash_json_failed
+                        return hash_json_success
 
                                        
                     #return result

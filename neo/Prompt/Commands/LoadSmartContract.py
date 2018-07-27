@@ -212,8 +212,10 @@ def ImportMultiSigContractAddr(wallet, args):
     pubkey = get_arg(args, 0)
     m = get_arg(args, 1)
     publicKeys = args[2:]
+    print("1011010101 -https://github.com/SharedMocha/neo-python/edit/master/neo/Prompt/Commands/LoadSmartContract.py")
 
     if publicKeys[1]:
+        print("2022222222 -https://github.com/SharedMocha/neo-python/edit/master/neo/Prompt/Commands/LoadSmartContract.py")
         pubkey_script_hash = Crypto.ToScriptHash(pubkey, unhex=True)
 
         verification_contract = Contract.CreateMultiSigContract(pubkey_script_hash, int(m), publicKeys)

@@ -41,7 +41,7 @@ from logzero import logger
 from twisted.internet import reactor, task, endpoints
 from twisted.web.server import Request, Site
 from klein import Klein, resource
-from neo.api.utils import cors_header
+from neo.api.utils import json_response, cors_header
 
 from neo.Network.NodeLeader import NodeLeader
 from neo.Core.Blockchain import Blockchain

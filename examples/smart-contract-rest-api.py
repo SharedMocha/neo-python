@@ -213,7 +213,7 @@ def echo_post(request):
     avmname = '/'+path+'.avm'
     print ('3 ----3 -> Incomming FilePath %s' % scname)
     returnvalue = 'Issue in creating wallet.Please try manual approach'
-    failed_data = {"status": "failed", "reason": "Contract Not Deployed due to issues (or) Insufficient Balance.Please try manual approach."}
+    failed_data = {"status": "failed", "reason": "Contract Not Deployed due to issues such as \"smart_contract_location: not ending with .py\"(or) Insufficient Balance.Please try manual approach."}
     hash_json_failed = failed_data
 
     # Save SC.py file

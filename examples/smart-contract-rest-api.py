@@ -213,7 +213,7 @@ def echo_post(request):
     avmname = '/'+path+'.avm'
     print ('3 ----3 -> Incomming FilePath %s' % scname)
     returnvalue = 'Issue in creating wallet.Please try manual approach'
-    failed_data = {"status": "failed", "reason": "Contract Not Deployed due to issues such as **smart_contract_location: not ending with .py and/or smart_contract_location link might not be raw url.Click raw button on your github file to get the correct url**. Issue might also be caused by insufficient balance in the wallet.Please try manual approach or caht with @sharedmocha#8871 on discord."}
+    failed_data = {"status": "failed", "reason": "Contract Not Deployed due to issues such as **smart_contract_location: not ending with .py and/or smart_contract_location link might not be raw url.Click raw button on your github file to get the correct url**. Issue might also be caused by insufficient balance in the wallet.Please try manual approach or chat with @sharedmocha#8871 on discord."}
     hash_json_failed = failed_data
 
     # Save SC.py file

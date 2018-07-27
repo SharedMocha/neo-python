@@ -291,7 +291,9 @@ def echo_post(request):
                     if result:
                         return hash_json_success
                     else:
-                        return hash_json_failed
+                        #return hash_json_failed
+                        return request
+
                                        
                     #return result
                 else:

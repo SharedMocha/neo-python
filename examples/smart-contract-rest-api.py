@@ -200,7 +200,7 @@ def echo_msg(request, msg):
 def echo_post(request):
 
     # Parse POST JSON body
-
+    request.setHeader('Access-Control-Allow-Origin', '*')
     body = json.loads(request.content.read().decode('utf-8'))
     print ('2 ----2 -> Incomming Body %s' % body)
     sc_location = body['smart_contract_location']
@@ -290,9 +290,7 @@ def echo_post(request):
                     if result:
                         return hash_json_success
                     else:
-                        resp = flask.Response(hash_json_failed)
-                        resp.headers['Access-Control-Allow-Origin'] = '*'
-                        return resp
+                        return hash_json_failed
                                        
                     #return result
                 else:

@@ -198,7 +198,6 @@ def echo_msg(request, msg):
 @catch_exceptions
 @authenticated
 @json_response
-@cors_header
 def echo_post(self,request):
 
     # Parse POST JSON body

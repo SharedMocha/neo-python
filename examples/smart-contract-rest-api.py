@@ -41,6 +41,7 @@ from logzero import logger
 from twisted.internet import reactor, task, endpoints
 from twisted.web.server import Request, Site
 from klein import Klein, resource
+from neo.api.utils import cors_header
 
 from neo.Network.NodeLeader import NodeLeader
 from neo.Core.Blockchain import Blockchain
@@ -194,13 +195,13 @@ def echo_msg(request, msg):
 
 
 @app.route('/echo-post', methods=['POST'])
+@cors_header
 @catch_exceptions
 @authenticated
 @json_response
 def echo_post(request):
 
     # Parse POST JSON body
-    request.setHeader('Access-Control-Allow-Origin', '*')
     body = json.loads(request.content.read().decode('utf-8'))
     print ('2 ----2 -> Incomming Body %s' % body)
     sc_location = body['smart_contract_location']

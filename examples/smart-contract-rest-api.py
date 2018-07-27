@@ -48,7 +48,7 @@ from neo.Implementations.Blockchains.LevelDB.LevelDBBlockchain import LevelDBBlo
 from neo.Settings import settings
 
 from neo.Network.api.decorators import json_response, \
-    gen_authenticated_decorator, catch_exceptions
+    gen_authenticated_decorator, catch_exceptions,cors_header
 from neo.contrib.smartcontract import SmartContract
 from neo.SmartContract.ContractParameter import ContractParameter, \
     ContractParameterType

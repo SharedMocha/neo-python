@@ -195,10 +195,10 @@ def echo_msg(request, msg):
 
 
 @app.route('/echo-post', methods=['POST'])
-@cors_header
 @catch_exceptions
 @authenticated
 @json_response
+@cors_header
 def echo_post(request):
 
     # Parse POST JSON body

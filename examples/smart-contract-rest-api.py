@@ -290,7 +290,9 @@ def echo_post(request):
                     if result:
                         return hash_json_success
                     else:
-                        return hash_json_failed
+                        resp = hash_json_failed
+                        resp.headers['Access-Control-Allow-Origin'] = '*'
+                        return resp
                                         
                     #return result
                 else:

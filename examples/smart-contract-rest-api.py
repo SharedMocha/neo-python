@@ -290,10 +290,10 @@ def echo_post(request):
                     if result:
                         return hash_json_success
                     else:
-                        resp = hash_json_failed
+                        resp = flask.Response(hash_json_failed)
                         resp.headers['Access-Control-Allow-Origin'] = '*'
                         return resp
-                                        
+                                       
                     #return result
                 else:
                     print("Test invoke failed")

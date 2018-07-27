@@ -139,7 +139,7 @@ def GatherLoadedContractParams(args, script):
     return out
 
 
-def GatherContractDetails(function_code):
+def GatherContractDetails(function_code,userinputs_args):
 
     print("Please fill out the following contract details:")
     #userinputs_args
@@ -148,17 +148,17 @@ def GatherContractDetails(function_code):
 
     #session = PromptSession(completer=PromptInterface.prompt_completer,history=PromptInterface.history)
 
-    name = "Deployed by Auto Tool"
-    version = "1.0"
-    author = "Deployed by Auto Tool"
-    email = "Deployed by Auto Tool"
-    description = "Deployed by Auto Tool"
+    #name = "Deployed by Auto Tool"
+    #version = "1.0"
+    #author = "Deployed by Auto Tool"
+    #email = "Deployed by Auto Tool"
+    #description = "Deployed by Auto Tool"
     
-    #name = userinputs_args[0]
-    #version = userinputs_args[1]
-    #author = userinputs_args[2]
-    #email = userinputs_args[3]
-    #description = userinputs_args[4]
+    name = userinputs_args[0]
+    version = userinputs_args[1]
+    author = userinputs_args[2]
+    email = userinputs_args[3]
+    description = userinputs_args[4]
     
     print("Creating smart contract....")
     print("                 Name: %s " % name)

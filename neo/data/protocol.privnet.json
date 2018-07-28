@@ -9,10 +9,10 @@
         "02a7bc55fe8684e0119768d104ba30795bdcc86619e864add26156723ed185cd62"
     ],
     "SeedList": [
-        "testnet.nos.io:20333",
-        "testnet.nos.io:20334",
-        "testnet.nos.io:20335",
-        "testnet.nos.io:20336"
+        "testnet.nos.io:30333",
+        "testnet.nos.io:30334",
+        "testnet.nos.io:30335",
+        "testnet.nos.io:30336"
     ],
     "RPCList":[
       "http://testnet.nos.io:30333"

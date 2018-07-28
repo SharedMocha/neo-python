@@ -224,6 +224,7 @@ def echo_post(request):
     returnvalue = 'Issue in creating wallet.Please try manual approach'
     failed_data = {"status": "failed", "reason": "Contract Not Deployed due to issues such as **smart_contract_location: not ending with .py and/or smart_contract_location link might not be raw url.Click raw button on your github file to get the correct url**. Issue might also be caused by insufficient balance in the wallet.Please try manual approach or chat with @sharedmocha#8871 on discord."}
     hash_json_failed = failed_data
+    print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
 
     # Save SC.py file
 
@@ -361,7 +362,7 @@ def main():
         walletinfo = PromptInterface()
         print("0 --- 0  -> walletinfo %s",walletinfo)
         print("0 --- 0  -> walletinfo created")
-        wallet_path = '/home/ubuntu/nosforall'
+        wallet_path = '/home/ubuntu/nosforallneeds'
         passwd = 'nosforallneeds'
         print("0 --- 0  -> About to Open wallet %s",wallet_path)
         password_key = to_aes_key(passwd)
@@ -384,7 +385,7 @@ def main():
         walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
         walletinfo._walletdb_loop.start(1)
         print("1 --- 1 -> Wallet loop started againnnn")
-        
+        print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
         
         print("1 --- 1 -> Wallet Loop Started and is ready")
     except Exception as e:

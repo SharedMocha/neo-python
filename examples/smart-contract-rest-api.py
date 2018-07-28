@@ -373,17 +373,18 @@ def main():
 
 
         
-        walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
-        walletinfo._walletdb_loop.start(1)
+        _walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
+        _walletdb_loop.start(1)
         print("1 --- 1 -> Wallet loop started")
 
-        walletinfo._walletdb_loop.stop()
+        _walletdb_loop.stop()
         #walletinfo._walletdb_loop = None
         walletinfo.Wallet.Rebuild()
         print("1 --- 1 -> Wallet rebuilt")
+        _walletdb_loop = None
         
-        walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
-        walletinfo._walletdb_loop.start(1)
+        _walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
+        _walletdb_loop.start(1)
         print("1 --- 1 -> Wallet loop started againnnn")
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
         time.sleep(15)

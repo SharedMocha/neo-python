@@ -309,8 +309,9 @@ class PromptInterface:
 
     def start_wallet_loop(self):
         self._walletdb_loop = task.LoopingCall(self.Wallet.ProcessBlocks)
+        print("1111111111111111111111111111")
         print(self._walletdb_loop)
-        print("111111111111111111111111 %s", %self._walletdb_loop)
+        print("1111111111111111111111111111")
         self._walletdb_loop.start(1)
 
     def stop_wallet_loop(self):

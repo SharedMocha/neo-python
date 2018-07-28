@@ -370,13 +370,20 @@ def main():
         walletinfo.Wallet = UserWallet.Open(wallet_path,password_key)
         print("1 --- 1 -> Wallet Opened")
 
+
+        
+        walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
+        walletinfo._walletdb_loop.start(1)
+        print("1 --- 1 -> Wallet loop started")
+
         walletinfo._walletdb_loop.stop()
         walletinfo._walletdb_loop = None
         walletinfo.Wallet.Rebuild()
+        print("1 --- 1 -> Wallet rebuilt")
         
-        print("1 --- 1 -> Wallet Rebuilt and Started")
         walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
         walletinfo._walletdb_loop.start(1)
+        print("1 --- 1 -> Wallet loop started againnnn")
         
         
         print("1 --- 1 -> Wallet Loop Started and is ready")

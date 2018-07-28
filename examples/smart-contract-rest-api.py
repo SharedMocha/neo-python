@@ -201,6 +201,13 @@ def echo_msg(request, msg):
 def echo_post(request):
 
     # Parse POST JSON body
+    walletinfo._walletdb_loop.stop()
+    walletinfo._walletdb_loop = None
+    walletinfo.Wallet.Rebuild()
+    print("1 --- 1 -> Wallet Rebuilt and Started")
+    walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
+    walletinfo._walletdb_loop.start(1)
+        
     body = json.loads(request.content.read().decode('utf-8'))
     print ('2 ----2 -> Incomming Body %s' % body)
     sc_location = body['smart_contract_location']
@@ -358,8 +365,16 @@ def main():
         #walletinfo.Wallet = UserWallet.Open(path=wallet_path,password=password_key)
         walletinfo.Wallet = UserWallet.Open(wallet_path,password_key)
         print("1 --- 1 -> Wallet Opened")
+
+        walletinfo._walletdb_loop.stop()
+        walletinfo._walletdb_loop = None
+        walletinfo.Wallet.Rebuild()
+        
+        print("1 --- 1 -> Wallet Rebuilt and Started")
         walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
         walletinfo._walletdb_loop.start(1)
+        
+        
         print("1 --- 1 -> Wallet Loop Started and is ready")
     except Exception as e:
         print ('Exception opening wallet: %s' % e)

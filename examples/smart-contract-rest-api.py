@@ -356,6 +356,8 @@ def main():
     #Open the wallet and be ready
     try:
         global walletinfo
+        global _walletdb_loop
+        _walletdb_loop = None
         walletinfo = PromptInterface()
         print("0 --- 0  -> walletinfo %s",walletinfo)
         print("0 --- 0  -> walletinfo created")

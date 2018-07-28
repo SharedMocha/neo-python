@@ -28,8 +28,8 @@
   "ApplicationConfiguration": {
     "DataDirectoryPath": "Chains/privnet",
     "NotificationDataPath": "Chains/privnet_notif",
-    "RPCPort": 20332,
-    "NodePort": 20333,
+    "RPCPort": 30333,
+    "NodePort": 30333,
     "WsPort": 20334,
     "UriPrefix": [ "http://*:20332" ],
     "SslCert": "",

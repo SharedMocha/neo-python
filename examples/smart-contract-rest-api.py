@@ -137,7 +137,9 @@ class PromptInterface:
     token_style = None
     start_height = None
     start_dt = None
+    _walletdb_loop = None
     Wallet = None
+
 
     def __init__(self):
 

@@ -178,7 +178,8 @@ def custom_background_code():
 
 @app.route('/')
 def home(request):
-    return 'Hello world'
+    print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+    return json.dumps(walletinfo.Wallet.ToJson(), indent=4)
 
 
 @app.route('/echo/<msg>')

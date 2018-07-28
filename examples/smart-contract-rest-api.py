@@ -209,7 +209,7 @@ def echo_post(request):
     #print("1 --- 1 -> Wallet Rebuilt and Started")
     #walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
     #walletinfo._walletdb_loop.start(1)
-        
+    print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
     body = json.loads(request.content.read().decode('utf-8'))
     print ('2 ----2 -> Incomming Body %s' % body)
     sc_location = body['smart_contract_location']
@@ -391,13 +391,13 @@ def main():
         #_walletdb_loop.start(1)
         print("1 --- 1 -> Wallet loop started againnnn")
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        time.sleep(15)
+        #time.sleep(15)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        time.sleep(15)
+        #time.sleep(15)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        time.sleep(15)
+        #time.sleep(15)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        time.sleep(25)
+        #time.sleep(25)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
         print("1 --- 1 -> Wallet Loop Started and is ready")
     except Exception as e:

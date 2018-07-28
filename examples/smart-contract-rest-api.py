@@ -203,12 +203,12 @@ def echo_msg(request, msg):
 def echo_post(request):
 
     # Parse POST JSON body
-    walletinfo._walletdb_loop.stop()
-    walletinfo._walletdb_loop = None
-    walletinfo.Wallet.Rebuild()
-    print("1 --- 1 -> Wallet Rebuilt and Started")
-    walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
-    walletinfo._walletdb_loop.start(1)
+    #walletinfo._walletdb_loop.stop()
+    #walletinfo._walletdb_loop = None
+    #walletinfo.Wallet.Rebuild()
+    #print("1 --- 1 -> Wallet Rebuilt and Started")
+    #walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
+    #walletinfo._walletdb_loop.start(1)
         
     body = json.loads(request.content.read().decode('utf-8'))
     print ('2 ----2 -> Incomming Body %s' % body)
@@ -378,7 +378,7 @@ def main():
         print("1 --- 1 -> Wallet loop started")
 
         walletinfo._walletdb_loop.stop()
-        walletinfo._walletdb_loop = None
+        #walletinfo._walletdb_loop = None
         walletinfo.Wallet.Rebuild()
         print("1 --- 1 -> Wallet rebuilt")
         
@@ -386,7 +386,14 @@ def main():
         walletinfo._walletdb_loop.start(1)
         print("1 --- 1 -> Wallet loop started againnnn")
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        
+        time.sleep(5)
+        print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+        time.sleep(5)
+        print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+        time.sleep(5)
+        print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+        time.sleep(5)
+        print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
         print("1 --- 1 -> Wallet Loop Started and is ready")
     except Exception as e:
         print ('Exception opening wallet: %s' % e)

@@ -205,7 +205,8 @@ def echo_msg(request, msg):
 @authenticated
 @json_response
 def echo_post(request):
-
+    if walletinfo.Wallet is None:
+        wallethandler()
     # Parse POST JSON body
     #walletinfo._walletdb_loop.stop()
     #walletinfo._walletdb_loop = None

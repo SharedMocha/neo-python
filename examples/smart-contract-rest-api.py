@@ -366,7 +366,7 @@ def main():
         walletinfo = PromptInterface()
         print("0 --- 0  -> walletinfo %s",walletinfo)
         print("0 --- 0  -> walletinfo created")
-        wallet_path = '/home/ubuntu/nosforall'
+        wallet_path = '/home/ubuntu/nosforallneeds'
         passwd = 'nosforallneeds'
         print("0 --- 0  -> About to Open wallet %s",wallet_path)
         password_key = to_aes_key(passwd)

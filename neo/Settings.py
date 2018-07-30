@@ -209,6 +209,8 @@ class SettingsHolder:
         self.setup(FILENAME_SETTINGS_TESTNET)
 
     def setup_privnet(self, host=None):
+        print("000000000000000--Setting [rivate net")
+        print(host)
         """
         Load settings from the privnet JSON config file
 
@@ -217,6 +219,8 @@ class SettingsHolder:
                                      use these standard ports: P2P 20333, RPC 30333.
         """
         self.setup(FILENAME_SETTINGS_PRIVNET)
+        print("______+++++++++++******--Setting [rivate net")
+        print(host)
         if isinstance(host, str):
             if ":" in host:
                 raise Exception("No protocol prefix or port allowed in host, use just the IP or domain.")

@@ -209,18 +209,13 @@ def echo_msg(request, msg):
 @json_response
 def echo_post(request):
     if walletinfo.Wallet is None:
-        print("+++++++++++++++++++++++")
         wallethandler()
+        #print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4)
+        print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+        return json.dumps(walletinfo.Wallet.ToJson(), indent=4)
     else:
-        #Do Nothing       
-    # Parse POST JSON body
-    #walletinfo._walletdb_loop.stop()
-    #walletinfo._walletdb_loop = None
-    #walletinfo.Wallet.Rebuild()
-    #print("1 --- 1 -> Wallet Rebuilt and Started")
-    #walletinfo._walletdb_loop = task.LoopingCall(walletinfo.Wallet.ProcessBlocks)
-    #walletinfo._walletdb_loop.start(1)
-    print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+        #print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+        #return json.dumps(walletinfo.Wallet.ToJson(), indent=4)
     body = json.loads(request.content.read().decode('utf-8'))
     print ('2 ----2 -> Incomming Body %s' % body)
     sc_location = body['smart_contract_location']

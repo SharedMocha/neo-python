@@ -365,7 +365,7 @@ def wallethandler():
         #_walletdb_loop.start(1)
         print("1 --- 1 -> Wallet loop started againnnn")
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        time.sleep(5)
+        #time.sleep(5)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
         #time.sleep(15)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))

@@ -220,7 +220,7 @@ def echo_post(request):
     print("3333333333333333333333333333333333333333")
     print ('2 ----2 -> Incomming Body %s' % body)
     returnvalue = 'Issue in creating wallet.Please try manual approach'
-    failed_data = {"status": "failed", "reason": "Contract Not Deployed due to issues such as **smart_contract_location: not ending with .py and/or smart_contract_location link might not be raw url.Click raw button on your github file to get the correct url**. Issue might also be caused by insufficient balance in the wallet.Please try manual approach or chat with @sharedmocha#8871 on discord."}
+    failed_data = {"status": "failed", "reason": "Contract Not Deployed due to issues such as **smart_contract_location: not ending with .py and/or .avm .smart_contract_location link might not be raw url.Click raw button on your github file to get the correct url**. Issue might also be caused by insufficient balance in the wallet.Please try manual approach or chat with @sharedmocha#8871 on discord."}
     hash_json_failed = failed_data
     
     if (body['is_the_file__smartcontract_or_avm'] == "sc"):
@@ -397,7 +397,7 @@ def wallethandler():
         print("1 --- 1 -> Wallet Loop Started and is ready")
     except Exception as e:
         print ('Exception opening wallet: %s' % e)
-        return 'Exception opening wallet.Please try manual deploying your SC. Also please shar issue with me @sharedmocha in Discord App.'
+        return 'Exception opening wallet.Please try manual deploying your SC. Also please share issue with me @sharedmocha in Discord App.'
 
     
 

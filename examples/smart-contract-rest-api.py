@@ -212,7 +212,7 @@ def echo_post(request):
         wallethandler()
         #print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        return json.dumps(walletinfo.Wallet.ToJson(), indent=4)
+        #return json.dumps(walletinfo.Wallet.ToJson(), indent=4)
     body = json.loads(request.content.read().decode('utf-8'))
     print ('2 ----2 -> Incomming Body %s' % body)
     sc_location = body['smart_contract_location']

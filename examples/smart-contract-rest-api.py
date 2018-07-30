@@ -219,28 +219,45 @@ def echo_post(request):
     body = json.loads(request.content.read().decode('utf-8'))
     print("3333333333333333333333333333333333333333")
     print ('2 ----2 -> Incomming Body %s' % body)
-    sc_location = body['smart_contract_location']
-    r = requests.get(sc_location, allow_redirects=True)
-    localtime = str(time.time())  # this removes the decimals
-    temp_filename = localtime + sc_location
-    filename = re.sub('[^ a-zA-Z0-9]', '', temp_filename)
-    path = '/home/ubuntu/' + filename
-    scname = path + '.py'
-    avmname = '/'+path+'.avm'
-    print ('3 ----3 -> Incomming FilePath %s' % scname)
     returnvalue = 'Issue in creating wallet.Please try manual approach'
     failed_data = {"status": "failed", "reason": "Contract Not Deployed due to issues such as **smart_contract_location: not ending with .py and/or smart_contract_location link might not be raw url.Click raw button on your github file to get the correct url**. Issue might also be caused by insufficient balance in the wallet.Please try manual approach or chat with @sharedmocha#8871 on discord."}
     hash_json_failed = failed_data
-    print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-
-    # Save SC.py file
-
-    try:
-        open(scname, 'wb').write(r.content)
-    except Exception as e:
-        print ('Exception creating file: %s' % e)
-        return 'Issue Downloading and Saving your smart contract.Please try manual approach'
-
+    
+    if (body['is_the_file__smartcontract_or_avm'] == "sc"):
+        print("SMART CONTRACT ------- IN")
+        sc_location = body['smart_contract_location']
+        r = requests.get(sc_location, allow_redirects=True)
+        localtime = str(time.time())  # this removes the decimals
+        temp_filename = localtime + sc_location
+        filename = re.sub('[^ a-zA-Z0-9]', '', temp_filename)
+        path = '/home/ubuntu/' + filename
+        scname = path + '.py'
+        avmname = '/'+path+'.avm'
+        try:
+            open(scname, 'wb').write(r.content)
+            sc_args = []
+            sc_args.append(scname)
+            BuildAndRun(sc_args, walletinfo.Wallet)
+        except Exception as e:
+            print ('Exception creating file: %s' % e)
+            return 'Issue Downloading and Saving your smart contract.Please try manual approach'
+        
+    else:
+        print("AVM -------- IN")
+        sc_location = body['smart_contract_location']
+        r = requests.get(sc_location, allow_redirects=True)
+        localtime = str(time.time())  # this removes the decimals
+        temp_filename = localtime + sc_location
+        filename = re.sub('[^ a-zA-Z0-9]', '', temp_filename)
+        path = '/home/ubuntu/' + filename
+        scname = path + '.py'
+        avmname = '/'+path+'.avm'
+        try:
+            open(avmname, 'wb').write(r.content)
+        except Exception as e:
+            print ('Exception creating file: %s' % e)
+            return 'Issue Downloading and Saving your smart contract avm file.Please try manual approach'
+    
     # Deploy samrt contract  ....
 
     try:
@@ -251,9 +268,9 @@ def echo_post(request):
         print ('4.1 ----4 ->scname %s' %scname)
         print ('4.2 ----4 -> Starting core process %s' %walletinfo.Wallet)
         print ('4.3 ----4 -> Completed Blockchain deafault pause')
-        sc_args = []
-        sc_args.append(scname)
-        BuildAndRun(sc_args, walletinfo.Wallet)
+        #sc_args = []
+        #sc_args.append(scname)
+        #BuildAndRun(sc_args, walletinfo.Wallet)
         #Blockchain.Default().Resume()
         print ('5 ----5 -> .avm file created')
         args = []

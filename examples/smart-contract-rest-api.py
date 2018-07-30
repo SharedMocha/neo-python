@@ -178,6 +178,9 @@ def custom_background_code():
 
 @app.route('/')
 def home(request):
+    if walletinfo.Wallet is None:
+        wallethandler()
+        #print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4)        
     print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
     return json.dumps(walletinfo.Wallet.ToJson(), indent=4)
 
@@ -324,41 +327,7 @@ def echo_post(request):
     # test
 
     return {'post-body': returnvalue}
-
-
-#
-# Main method which starts everything up
-#
-
-def main():
-
-    # Use TestNet
-
-    #settings.setup_testnet()
-    print("11111111111111111--Setting private net")
-    settings.setup_privnet("testnet.nos.io")
-    print("222222222222222--compleyed  private net")
-
-    # Setup the blockchain
-
-    blockchain = LevelDBBlockchain(settings.chain_leveldb_path)
-    Blockchain.RegisterBlockchain(blockchain)
-    dbloop = task.LoopingCall(Blockchain.Default().PersistBlocks)
-    dbloop.start(.1)
-    NodeLeader.Instance().Start()
-    
-
-    # Disable smart contract events for external smart contracts
-
-    settings.set_log_smart_contract_events(False)
-
-    # Start a thread with custom code
-
-    d = threading.Thread(target=custom_background_code)
-    d.setDaemon(True)  # daemonizing the thread will kill it when the main thread is quit
-    d.start()
-    print("0 --- 0 -> STARTING")
-    #Open the wallet and be ready
+def wallethandler():
     try:
         global walletinfo
         global _walletdb_loop
@@ -395,19 +364,57 @@ def main():
         #_walletdb_loop.start(1)
         print("1 --- 1 -> Wallet loop started againnnn")
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        #time.sleep(15)
+        time.sleep(15)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        #time.sleep(15)
+        time.sleep(15)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        #time.sleep(15)
+        time.sleep(15)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-        #time.sleep(25)
+        time.sleep(25)
         print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
         print("1 --- 1 -> Wallet Loop Started and is ready")
     except Exception as e:
         print ('Exception opening wallet: %s' % e)
         return 'Exception opening wallet.Please try manual deploying your SC. Also please shar issue with me @sharedmocha in Discord App.'
 
+    
+
+#
+# Main method which starts everything up
+#
+
+def main():
+
+    # Use TestNet
+
+    #settings.setup_testnet()
+    print("11111111111111111--Setting private net")
+    settings.setup_privnet("testnet.nos.io")
+    print("222222222222222--compleyed  private net")
+
+    # Setup the blockchain
+
+    blockchain = LevelDBBlockchain(settings.chain_leveldb_path)
+    Blockchain.RegisterBlockchain(blockchain)
+    dbloop = task.LoopingCall(Blockchain.Default().PersistBlocks)
+    dbloop.start(.1)
+    NodeLeader.Instance().Start()
+    
+
+    # Disable smart contract events for external smart contracts
+
+    settings.set_log_smart_contract_events(False)
+
+    # Start a thread with custom code
+
+    d = threading.Thread(target=custom_background_code)
+    d.setDaemon(True)  # daemonizing the thread will kill it when the main thread is quit
+    d.start()
+    print("0 --- 0 -> STARTING")
+    #Open the wallet and be ready
+    wallethandler()
+    
+   
     # Hook up Klein API to Twisted reactor.
     # endpoint_description = "tcp:port=%s:interface=localhost" % API_PORT
 

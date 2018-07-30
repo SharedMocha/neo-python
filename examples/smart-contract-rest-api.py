@@ -209,6 +209,7 @@ def echo_msg(request, msg):
 @json_response
 def echo_post(request):
     if walletinfo.Wallet is None:
+        print("+++++++++++++++++++++++")
         wallethandler()
     else:
         #Do Nothing       
@@ -334,11 +335,13 @@ def echo_post(request):
 
     return {'post-body': returnvalue}
 def wallethandler():
+    print("+++++==starting+++")
     try:
         global walletinfo
         global _walletdb_loop
         _walletdb_loop = None
         walletinfo = PromptInterface()
+        print("+++++==starting+++")
         print("0 --- 0  -> walletinfo %s",walletinfo)
         print("0 --- 0  -> walletinfo created")
         wallet_path = '/home/ubuntu/nosforallneeds'

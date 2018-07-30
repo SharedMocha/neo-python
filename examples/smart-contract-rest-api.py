@@ -180,9 +180,12 @@ def custom_background_code():
 def home(request):
     if walletinfo.Wallet is None:
         wallethandler()
-        #print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4)        
-    print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
-    return json.dumps(walletinfo.Wallet.ToJson(), indent=4)
+        #print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4)
+        print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+        return json.dumps(walletinfo.Wallet.ToJson(), indent=4)
+    else:
+        print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+        return json.dumps(walletinfo.Wallet.ToJson(), indent=4)
 
 
 @app.route('/echo/<msg>')
@@ -207,6 +210,8 @@ def echo_msg(request, msg):
 def echo_post(request):
     if walletinfo.Wallet is None:
         wallethandler()
+    else:
+        #Do Nothing       
     # Parse POST JSON body
     #walletinfo._walletdb_loop.stop()
     #walletinfo._walletdb_loop = None

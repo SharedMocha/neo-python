@@ -208,12 +208,16 @@ def echo_msg(request, msg):
 @authenticated
 @json_response
 def echo_post(request):
+    print("111111111111111111111")
     if walletinfo.Wallet is None:
+        print("2222222222222222222222222")
         wallethandler()
+        print("3333333333333333333333333333333333333333")
         #print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4)
-        print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
+        #print("Wallet %s " % json.dumps(walletinfo.Wallet.ToJson(), indent=4))
         #return json.dumps(walletinfo.Wallet.ToJson(), indent=4)
     body = json.loads(request.content.read().decode('utf-8'))
+    print("3333333333333333333333333333333333333333")
     print ('2 ----2 -> Incomming Body %s' % body)
     sc_location = body['smart_contract_location']
     r = requests.get(sc_location, allow_redirects=True)

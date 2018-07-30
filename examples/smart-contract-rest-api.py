@@ -334,7 +334,8 @@ def main():
 
     # Use TestNet
 
-    settings.setup_testnet()
+    #settings.setup_testnet()
+    settings.setup_privnet("testnet.nos.io")
 
     # Setup the blockchain
 

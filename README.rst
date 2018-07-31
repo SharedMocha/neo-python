@@ -1,7 +1,11 @@
 Deploying Smart Contracts onto nosNET using API
+
+
 This github code allows anyone to deploy python smart contracts (or) compiled smart contract files such as . avm files onto nosNET using API instead of CLI(Command Line Interface)
 
 Why use API ?
+
+
 Today developers need to perform below steps for deploying smart contracts onto nosNet.
 
 Download all required blockchain tools/softwares.
@@ -18,7 +22,11 @@ This new API does the smart contract deployment by performing all the above step
 **You can checkout the wallet being used by clicking here .
 **Click here for wallet details
 
+
+
 Checkout this article on how to use the API-
+
+
 https://medium.com/@SharedMocha/deploy-smartcontracts-on-nosnet-using-api-dd5766d23f85
 
 You can deploy this code on your local machine and run it yourself.

@@ -8,13 +8,26 @@ Why use API ?
 
 Today developers need to perform below steps for deploying smart contracts onto nosNet.
 
-Download all required blockchain tools/softwares.
-Setup blockchain node either on their local machine (or) cloud (or) docker
-Sync blockchain node till it gets all the latest blocks.
-Create wallet
-Sync the wallet to 100%
-Gather gas for deployment
-Finally,compile and deploy smart contract and perform ‘Test Invoke’
+*Download all required blockchain tools/softwares.
+
+
+*Setup blockchain node either on their local machine (or) cloud (or) docker
+
+
+*Sync blockchain node till it gets all the latest blocks.
+
+
+*Create wallet
+
+
+*Sync the wallet to 100%
+
+
+*Gather gas for deployment
+
+
+*Finally,compile and deploy smart contract and perform ‘Test Invoke’
+
 all these steps require both time and system space.
 
 This new API does the smart contract deployment by performing all the above steps. It does so by accepting your smart contract location and deploying it directly using a predefined wallet which has GAS. By using this API you can make smart contract deployments faster and easy.

@@ -1,4 +1,4 @@
-Deploying Smart Contracts onto nosNET using API
+Deploying Smart Contracts onto nosNET using API -->
 
 
 This github code allows anyone to deploy python smart contracts (or) compiled smart contract files such as . avm files onto nosNET using API instead of CLI(Command Line Interface)
@@ -24,7 +24,7 @@ This new API does the smart contract deployment by performing all the above step
 
 
 
-Checkout this article on how to use the API-
+Checkout this article on how to use the API -- >
 
 
 https://medium.com/@SharedMocha/deploy-smartcontracts-on-nosnet-using-api-dd5766d23f85
@@ -34,10 +34,10 @@ You can deploy this code on your local machine and run it yourself.
 
 
 
-To deploy on Ubuntu 16.04 perform below steps
+To deploy on Ubuntu 16.04 perform below steps -->
 
 
-Step 1- Setup
+Step 1- Setup -->
 Older Ubuntu versions (eg. 16.04)
 For older Ubuntu versions you'll need to use an external repository like Felix Krull's deadsnakes PPA at https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa (read more here).
 
@@ -48,7 +48,12 @@ add-apt-repository ppa:deadsnakes/ppa
 apt-get update
 apt-get install python3.6 python3.6-dev python3.6-venv python3-pip libleveldb-dev libssl-dev g
 
-Step2- run below commands in your terminal/shell
+Step2- run below commands in your terminal/shell -->
 
 
 rm -rf neo-python && git clone https://github.com/SharedMocha/neo-python.git && cd neo-python && python3.6 -m venv venv && source venv/bin/activate && pip install requests && pip install -e . && cd examples && export NEO_REST_API_TOKEN="123" && python3.6 smart-contract-rest-api.py
+
+Step3-
+send API Post requests at  "localhost:8080". For more details check medium article
+
+https://medium.com/@SharedMocha/deploy-smartcontracts-on-nosnet-using-api-dd5766d23f85
